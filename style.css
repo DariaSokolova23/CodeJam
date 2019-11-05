@@ -1,0 +1,27 @@
+#result{
+    width: 1000px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 10px;
+}
+.keyboard {
+    width: 1024px;
+    height: 500px;
+    border: 2px solid black;
+    margin: 0 auto;
+
+}
+.key{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background: salmon;
+    border: 1px solid black;
+    vertical-align: top;
+    text-align: center;
+    font-size: 24px;
+}

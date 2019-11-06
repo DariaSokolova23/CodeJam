@@ -2,19 +2,103 @@ let div = document.createElement('div');
 div.setAttribute('class', 'keyboard'); 
 document.body.appendChild(div);
 
-const arrButtonsRus = ['ё','1','2','3','4','5','6','7','8','9','0','-_','=+','backspace','tab','й','ц','у','к','е','н','г','ш','щ','з','х','ъ',"\/",'del','caps lock','ф','ы','в','а','п','р','о','л','д','ж','э','enter','shift','|','я','ч','с','м','и','т','ь','б','ю','.','top','shift','ctrl','win','alt','spase','alt','ctrl','left','bottom','right'];
-const arrButtonsEng = ['`','1','2','3','4','5','6','7','8','9','0','-_','=+','backspace','tab','q','w','e','r','t','y','u','i','o','p','[',']',"\/",'del','caps lock','a','s','d','f','g','h','j','k','l',';','"','enter','shift','|','z','x','c','v','b','n','m',',','.','/','top','shift','ctrl','win','alt','spase','alt','ctrl','left','bottom','right'];
-
-createVirtualButtonElem();
-
-function createVirtualButtonElem(){
-    for (let i = 0; i<arrButtonsRus.length; i++){
-    let div = document.createElement('div');
-    div.setAttribute('class' , 'key');
-    document.getElementsByClassName('keyboard')[0].appendChild(div);
-    div.innerHTML = arrButtonsRus[i];
-    div.id = arrButtonsRus[i].charCodeAt();
-    };    
+let alphabet = {
+    81: ['q','й'],
+    87: ['w','ц'],
+    69: ['e','у'],
+    82: ['r','к'],
+    84: ['t','е'],
+    89: ['y','н'],
+    85: ['u','г'],
+    73: ['i','ш'],
+    79: ['o','щ'],
+    80: ['p','з'],
+    219: ['[','х'],
+    221: [']','ъ'],
+    220: ['\\','\\'],
+    65: ['a','ф'],
+    83: ['s','ы'],
+    68: ['d','в'],
+    70: ['f','а'],
+    71: ['g','п'],
+    72: ['h','р'],
+    74: ['j','о'],
+    75: ['k','л'],
+    76: ['l','д'],
+    186: [';','ж'],
+    222: ['\'','э'],
+    90: ['z','я'],
+    88: ['x','ч'],
+    67: ['c','с'],
+    86: ['v','м'],
+    66: ['b','и'],
+    78: ['n','т'],
+    77: ['m','ь'],
+    188: [',','б'],
+    190: ['.','ю'],
+    191: ['/','.'],
+    49: ['1','1'],
+    50: ['2','2'],
+    51: ['3','3'],
+    52: ['4','4'],
+    53: ['5','5'],
+    54: ['6','6'],
+    55: ['7','7'],
+    56: ['8','8'],
+    57: ['9','9'],
+    48: ['0','0'],
+    189: ['-','-'],
+    187: ['=','='],
+    8: ['Backspace','Backspace'],
+    192: ['`','ё'],
+    9: ['Tab','Tab'],
+    20: ['CapsLock','CapsLock'],
+    16: ['Shift','Shift'],
+    17: ['Control','Control'],
+    18: ['Alt','Alt']
 };
 
+let languageNow = true;//true - rus
+
+document.addEventListener('keyup',function(event){
+    let currentButton = document.getElementById(event.keyCode);
+    currentButton.style.backgroundColor = 'salmon';
+    if (event.keyCode == 18){
+        if(event.shiftKey){ 
+            languageNow = !languageNow;
+            createVirtualButtons();
+        }
+    }   
+    if (event.keyCode == 16){
+        if(event.altKey){
+            languageNow = !languageNow;
+            createVirtualButtons();
+        }
+    }
+})
+
+document.addEventListener('keydown', function(event) {
+    let currentButton = document.getElementById(event.keyCode);
+    currentButton.style.backgroundColor = "#bebebe";     
+});  
+
+createVirtualButtons();
+
+function createVirtualButtons(){
+    let keyboardElem = document.getElementsByClassName('keyboard')[0];
+    keyboardElem.innerHTML = " "
+    for (let i in alphabet){
+        let div = document.createElement('div');
+        div.setAttribute('class' , 'key');
+        keyboardElem.appendChild(div);
+        if (languageNow == true){
+            div.innerHTML = alphabet[i][1];
+        }
+        else {
+            div.innerHTML = alphabet[i][0];
+        }        
+        div.id = i;    
+        
+    };    
+};
 

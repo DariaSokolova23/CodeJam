@@ -98,6 +98,14 @@ function createVirtualButtons(){
             div.innerHTML = alphabet[i][0];
         }        
         div.id = i;    
+
+        div.addEventListener('click', function(){
+            if (div.innerHTML.length == 1){
+                let textOutput = document.getElementById('result');
+                textOutput.value += div.innerHTML;
+            }
+            
+        })
         
     };    
 };

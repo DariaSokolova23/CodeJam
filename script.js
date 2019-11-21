@@ -64,8 +64,6 @@ if (localStorage.getItem('lang')==='false') {
     languageNow =  false;    
 }
 
-
-
 document.addEventListener('keyup', function (event) {
     let currentButton = document.getElementById(event.keyCode);
     currentButton.style.backgroundColor = 'salmon';
@@ -85,10 +83,6 @@ document.addEventListener('keyup', function (event) {
         }
     }
 })
-
-
-
-
 document.addEventListener('keydown', function (event) {
     let currentButton = document.getElementById(event.keyCode);
     currentButton.style.backgroundColor = "#bebebe";
